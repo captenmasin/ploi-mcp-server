@@ -1,0 +1,28 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ploi-mcp-server",
+  "main": "src/worker.ts",
+  "compatibility_date": "2025-06-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "PloiMcp",
+        "class_name": "PloiMcp"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["PloiMcp"]
+    }
+  ]
+  // Multi-tenant: each caller supplies their own Ploi token as
+  // `Authorization: Bearer <token>`, so NO Ploi secret is stored on the Worker.
+  // Optional plaintext overrides can go under "vars": { ... }:
+  //   PLOI_API_BASE_URL, PLOI_USER_AGENT
+}

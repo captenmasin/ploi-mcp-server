@@ -14,7 +14,11 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
+    "typecheck:worker": "wrangler types && tsc -p tsconfig.worker.json",
     "start": "node dist/index.js",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "cf-typegen": "wrangler types",
     "prepare": "npm run build"
   },
   "repository": {
@@ -34,10 +38,12 @@
   "homepage": "https://github.com/captenmasin/ploi-mcp-server#readme",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
+    "agents": "^0.16.2",
     "zod": "^4.4.3"
   },
   "devDependencies": {
     "@types/node": "^26.0.0",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "wrangler": "^4.103.0"
   }
 }

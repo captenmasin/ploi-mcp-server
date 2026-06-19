@@ -1,0 +1,8 @@
+# Local-only overrides for `wrangler dev`. Copy to .dev.vars (do NOT commit it).
+#
+# The Worker is multi-tenant: the Ploi API token is NOT configured here. Each
+# caller supplies it per request as `Authorization: Bearer <ploi-token>`.
+#
+# Only these optional overrides are read from the environment:
+# PLOI_API_BASE_URL="https://ploi.io/api"
+# PLOI_USER_AGENT="ploi-mcp-server/1.0.0"
