@@ -1,0 +1,43 @@
+{
+  "name": "ploi-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for Ploi.io to manage servers, sites, and other account resources.",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "ploi-mcp-server": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "start": "node dist/index.js",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/captenmasin/ploi-mcp-server.git"
+  },
+  "keywords": [
+    "mcp",
+    "ploi",
+    "model-context-protocol"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/captenmasin/ploi-mcp-server/issues"
+  },
+  "homepage": "https://github.com/captenmasin/ploi-mcp-server#readme",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.0",
+    "typescript": "^6.0.3"
+  }
+}
