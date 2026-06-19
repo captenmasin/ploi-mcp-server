@@ -23,7 +23,7 @@ to launch this server with the token in the environment:
       "command": "node",
       "args": ["/path/to/ploi-mcp-server/dist/index.js"],
       "env": {
-        "PLOI_API_TOKEN": "your-ploy-api-token"
+        "PLOI_API_TOKEN": "your-ploi-api-token"
       }
     }
   }

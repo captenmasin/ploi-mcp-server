@@ -153,6 +153,12 @@ const siteId = z.coerce.number().int().positive().describe("Ploi site ID.");
 const databaseId = z.coerce.number().int().positive().describe("Ploi database ID.");
 const containerId = z.coerce.number().int().positive().describe("Ploi Docker container ID.");
 const providerId = z.coerce.number().int().positive().describe("Ploi server provider ID.");
+const ipv4Address = z
+  .string()
+  .regex(
+    /^(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)$/,
+    "Must be an IPv4 address.",
+  );
 const page = z.coerce.number().int().positive().optional().describe("Pagination page number.");
 const perPage = z.coerce.number().int().positive().max(100).optional().describe("Items per page.");
 const confirm = z.literal(true).describe("Must be true to confirm this destructive operation.");
@@ -228,7 +234,7 @@ async function main(): Promise<void> {
         "Create a custom server record and return the SSH command/start URL required to begin installation.",
       inputSchema: {
         name: z.string().min(1).describe("Server name."),
-        ip: z.string().ip({ version: "v4" }).describe("Public IPv4 address of the custom server."),
+        ip: ipv4Address.describe("Public IPv4 address of the custom server."),
         type: z
           .enum(["server", "load-balancer", "database-server", "redis-server", "storage-server"])
           .default("server")
@@ -263,7 +269,7 @@ async function main(): Promise<void> {
       inputSchema: {
         server_id: serverId,
         name: z.string().min(1).optional().describe("New server name."),
-        ip: z.string().ip({ version: "v4" }).optional().describe("New server IPv4 address."),
+        ip: ipv4Address.optional().describe("New server IPv4 address."),
         ssh_port: z.coerce.number().int().positive().max(65535).optional().describe("SSH port for the server."),
       },
       annotations: mutating,
